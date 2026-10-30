@@ -1,7 +1,6 @@
 def create_matrix(key):
     key = key.upper().replace("J", "I")
     letters = ""
-
     for ch in key + "ABCDEFGHIKLMNOPQRSTUVWXYZ":
         if ch.isalpha() and ch not in letters:
             letters += ch
@@ -16,7 +15,6 @@ def encrypt(text, key):
     matrix = create_matrix(key)
     text = text.upper().replace("J", "I")
     text = "".join(ch for ch in text if ch.isalpha())
-    # Make pairs
     pairs = []
     i = 0
     while i < len(text):
@@ -32,7 +30,6 @@ def encrypt(text, key):
             i += 2
         pairs.append(a + b)
     result = ""
-    # Encryption
     for pair in pairs:
         a, b = pair
         r1, c1 = find_position(matrix, a)
@@ -49,5 +46,4 @@ def encrypt(text, key):
     return result
 key = input("Enter key: ")
 plaintext = input("Enter plaintext: ")
-
 print("Encrypted text:", encrypt(plaintext, key))
